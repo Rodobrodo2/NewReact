@@ -1,12 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+    const navigate = useNavigate();
+
+    const goToHome = () => {
+      navigate("/home");
+    };
+  
     return (
-        <>
-            <h1>About</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iusto nostrum suscipit quia aperiam, soluta nam quod dignissimos velit quisquam quasi ea consectetur natus doloribus unde ducimus eum sapiente quam!</p>
-        </>
-    )
+      <div>
+        <h2>Questa è la pagina About!</h2>
+        <p>Benvenuto nella pagina "About" della nostra applicazione!</p>
+        <button onClick={goToHome}>Vai alla Home</button>
+      </div>
+    );
 }
 
 export default About;
