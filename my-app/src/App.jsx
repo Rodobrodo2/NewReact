@@ -2,18 +2,17 @@ import { Routes, Route } from "react-router-dom";
 import React from "react";
 import About from "./pages/About";
 import Home from "./pages/Home";
-import Nav from "./components/Nav";
-
+import Layout from "./layouts/PublicLayout";
+import PublicLayout from "./layouts/PublicLayout";
 const App = () => {
   return (
-    <div>
-      <Nav />
-      <Routes>
-        <Route path="/" element={<div></div>} /> {/* Rotta vuota */}
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </div>
+    <Routes>
+      {/* Definisci il layout comune */}
+      <Route path="/" element={<PublicLayout />}>
+        <Route path="home" element={<Home />} />
+        <Route path="about" element={<About />} />
+      </Route>
+    </Routes>
   );
 }
 
