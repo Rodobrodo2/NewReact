@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTodos } from "../store/slices/todosSlice"; // Assicurati che il percorso sia corretto
+import { fetchTodos } from "../store/slices/todosSlice"
 
 const Home = () => {
   const dispatch = useDispatch();

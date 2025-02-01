@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTodos, addTodo, removeTodo, toggleTodo } from '../store/slices/todosSlice';
+import { fetchTodos, addTodo, removeTodo, toggleTodo, completeTodo } from '../store/slices/todosSlice';
 
 const IntegratedTodo = () => {
   const dispatch = useDispatch();
@@ -81,6 +81,18 @@ const IntegratedTodo = () => {
               >
                 Elimina
               </button>
+              {/* Pulsante per completare il to-do, visibile solo se non è già completato */}
+              {!todo.completed && (
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(completeTodo(todo.id));
+                  }}
+                  style={{ marginLeft: '1rem' }}
+                >
+                  Completa
+                </button>
+              )}
             </li>
           ))}
         </ul>

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Azione asincrona per il fetch dei to-do da un'API
+// Definisci l'azione asincrona per fare il fetch dei to-do
 export const fetchTodos = createAsyncThunk(
   'todos/fetchTodos',
   async (url, thunkAPI) => {
@@ -13,29 +13,34 @@ export const fetchTodos = createAsyncThunk(
   }
 );
 
+const initialState = {
+  todos: [],
+  isLoading: false,
+  error: null,
+};
+
 const todoSlice = createSlice({
   name: 'todos',
-  initialState: {
-    todos: [],
-    isLoading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
-    // Aggiunge un nuovo to-do
     addTodo: (state, action) => {
       state.todos.push(action.payload);
     },
-    // Rimuove un to-do per id
     removeTodo: (state, action) => {
       state.todos = state.todos.filter(todo => todo.id !== action.payload);
     },
-    // Alterna lo stato "completed" di un to-do
     toggleTodo: (state, action) => {
       const todo = state.todos.find(todo => todo.id === action.payload);
       if (todo) {
         todo.completed = !todo.completed;
       }
     },
+    completeTodo: (state, action) => {
+      const todo = state.todos.find(todo => todo.id === action.payload);
+      if (todo) {
+        todo.completed = true;
+      }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -54,6 +59,8 @@ const todoSlice = createSlice({
   },
 });
 
-// Esportiamo le azioni sincrone e il reducer
-export const { addTodo, removeTodo, toggleTodo } = todoSlice.actions;
+// Esporta le azioni sincrone
+export const { addTodo, removeTodo, toggleTodo, completeTodo } = todoSlice.actions;
+
+// Esporta il reducer
 export default todoSlice.reducer;
